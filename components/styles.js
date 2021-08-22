@@ -12,7 +12,8 @@ export const Colors = {
     brand:"#85BBFA",
     green: "#10B981",
     red: "#EF4444",
-    black: "#000000"
+    black: "#000000",
+    green: "#95E793"
 }
 
 const { primary, secondary, tertiary, darkLight, brand, green, red, black } = Colors;
@@ -31,8 +32,8 @@ export const InnerContainer = styled.View`
 `
 
 export const PageLogo = styled.Image`
-    width: 250px;
-    height: 200px;
+    width: 215px;
+    height: 170px;
 `
 
 export const SubTitle = styled.Text`
@@ -95,5 +96,45 @@ export const ButtonText = styled.Text`
     padding-top: 2px;
     color: ${black};
     font-size: 20px;
+    font-family: poppins-bold;
+`
+
+export const MsgBox = styled.Text`
+    text-align: center;
+    font-size: 13px;
+`
+
+export const Line = styled.View`
+    height: 1px;
+    width: 100%;
+    margin-vertical: 6px;
+    background-color: black
+`
+
+export const ForgotPassword = styled.Text`
+    text-align: center;
+    font-family: poppins-bold;
+    margin: 5px;
+    color: ${brand}
+`
+
+export const ButtonsContainer = styled.View`
+    flexDirection: row;
+    padding-top: 3px;
+    justifyContent: space-between;
+`
+
+export const CreateAccount = styled.TouchableOpacity`
+    padding: 13px;
+    background-color: ${green};
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+`
+
+export const EspaceResto = styled.Text`
+    padding-top: 2px;
+    color: ${black};
+    font-size: 12px;
     font-family: poppins-bold;
 `

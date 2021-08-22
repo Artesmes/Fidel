@@ -13,6 +13,12 @@ import {
   ButtonText,
   RightIcon,
   Colors,
+  MsgBox,
+  Line,
+  ForgotPassword,
+  ButtonsContainer,
+  CreateAccount,
+  EspaceResto
 } from "./../components/styles";
 
 // Formik
@@ -20,6 +26,9 @@ import { Formik } from "formik";
 
 //icons
 import { Octicons, Ionicons } from "@expo/vector-icons";
+
+//linear gradient
+
 
 //colors
 const { brand } = Colors;
@@ -66,9 +75,20 @@ const Login = () => {
                 hidePassword={hidePassword}
                 setHidePassword={setHidePassword}
               />
+              <MsgBox>...</MsgBox>
               <StyledButton onPress = {() => console.log("test")}>
                 <ButtonText>Connexion</ButtonText>
               </StyledButton>
+              <ForgotPassword>Mot de passe oublié ?</ForgotPassword>
+              <Line />
+              <ButtonsContainer>
+                <CreateAccount>
+                  <ButtonText>Créer un compte</ButtonText>
+                </CreateAccount>
+                <CreateAccount>
+                  <EspaceResto>Espace{"\n"}restaurateurs</EspaceResto>
+                </CreateAccount>
+              </ButtonsContainer>
             </StyledFormArea>
           )}
         </Formik>
