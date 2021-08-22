@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View } from "react-native";
+import { KeyboardAvoidingView, View } from "react-native";
 import {
   StyledContainer,
   InnerContainer,
@@ -18,7 +18,8 @@ import {
   ForgotPassword,
   ButtonsContainer,
   CreateAccount,
-  EspaceResto
+  EspaceResto,
+  ForgotPasswordContainer
 } from "./../components/styles";
 
 // Formik
@@ -27,11 +28,11 @@ import { Formik } from "formik";
 //icons
 import { Octicons, Ionicons } from "@expo/vector-icons";
 
-//linear gradient
-
-
 //colors
 const { brand } = Colors;
+
+// keyboard avoiding view
+
 
 const Login = () => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -76,10 +77,12 @@ const Login = () => {
                 setHidePassword={setHidePassword}
               />
               <MsgBox>...</MsgBox>
-              <StyledButton onPress = {() => console.log("test")}>
+              <StyledButton onPress = {handleSubmit}>
                 <ButtonText>Connexion</ButtonText>
               </StyledButton>
-              <ForgotPassword>Mot de passe oublié ?</ForgotPassword>
+              <ForgotPasswordContainer>
+                <ForgotPassword>Mot de passe oublié ?</ForgotPassword>
+              </ForgotPasswordContainer>
               <Line />
               <ButtonsContainer>
                 <CreateAccount>
@@ -94,6 +97,7 @@ const Login = () => {
         </Formik>
       </InnerContainer>
     </StyledContainer>
+    
   );
 };
 

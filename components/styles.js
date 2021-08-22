@@ -5,7 +5,7 @@ import Constants from 'expo-constants'
 const StatusBarHeight = Constants.statusBarHeight;
 
 export const Colors = {
-    primary: "#E5E5E5",
+    primary: "#F5F7FD",
     secondary: "#FFFFFF",
     tertiary: "#1F2937",
     darkLight: "#9CA3AF",
@@ -58,7 +58,7 @@ export const StyledTextInput = styled.TextInput`
     font-size: 16px;
     height: 60px;
     margin-vertical: 3px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     color: ${tertiary};
 `
 
@@ -66,6 +66,7 @@ export const StyledInputLabel = styled.Text`
     color: ${tertiary};
     font-size: 13px;
     text-align: left;
+    font-family: poppins-bold;
 `
 
 export const LeftIcon = styled.View`
@@ -110,6 +111,7 @@ export const Line = styled.View`
     margin-vertical: 6px;
     background-color: black
 `
+export const ForgotPasswordContainer = styled.TouchableOpacity``
 
 export const ForgotPassword = styled.Text`
     text-align: center;
@@ -136,5 +138,35 @@ export const EspaceResto = styled.Text`
     padding-top: 2px;
     color: ${black};
     font-size: 12px;
+    font-family: poppins-bold;
+`
+
+export const ButtonsContainer2 = styled.View`
+    flexDirection: row;
+    padding-top: 3px;
+    justifyContent: space-between;
+    alignItems: center;
+`
+
+export const Buttonconnexion2 = styled.TouchableOpacity`
+    margin-top: 7px
+    padding: 10px;
+    background-color: ${secondary};
+    border-radius: 30px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    padding-left: 20px;
+    padding-right: 20px;
+
+`
+export const PageLogo2 = styled.Image`
+    width: 70px;
+    height: 70px;
+`
+
+export const TextButtonConnexion2 = styled.Text`
+    color: #265994;
+    font-size: 15px;
     font-family: poppins-bold;
 `
