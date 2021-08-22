@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { KeyboardAvoidingView, View } from "react-native";
+import { KeyboardAvoidingView, View, ScrollView, TouchableWithoutFeedback, Keyboard } from "react-native";
 import {
   StyledContainer,
   InnerContainer,
@@ -32,12 +32,13 @@ import { Octicons, Ionicons } from "@expo/vector-icons";
 const { brand } = Colors;
 
 // keyboard avoiding view
-
+import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
 
 const Login = () => {
   const [hidePassword, setHidePassword] = useState(true);
 
   return (
+    <KeyboardAvoidingWrapper>
     <StyledContainer>
       <InnerContainer>
         <PageLogo
@@ -97,7 +98,7 @@ const Login = () => {
         </Formik>
       </InnerContainer>
     </StyledContainer>
-    
+    </KeyboardAvoidingWrapper>
   );
 };
 

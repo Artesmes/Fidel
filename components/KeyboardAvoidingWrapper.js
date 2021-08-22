@@ -1,19 +1,22 @@
-import React from 'react'
+import React from "react";
+import {
+  ScrollView,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  View,
+  Keyboard,
+} from "react-native";
 
-//keyboard avoiding view
-import { KeyboardAvoidingView, ScrollView, TouchableWithoutFeedBack, Keyboard } from 'react-native';
+const KeyboardAvoidingWrapper = ({ children }) => {
+  return (
+    <KeyboardAvoidingView style={{ flex: 1 }}>
+      <ScrollView>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          {children}
+        </TouchableWithoutFeedback>
+      </ScrollView>
+    </KeyboardAvoidingView>
+  );
+};
 
-const keyboardAvoidingWrapper = ({children}) => {
-    return (
-        <KeyboardAvoidingView style={{flex: 1}}>
-            <ScrollView>
-                <TouchableWithoutFeedBack onPress={Keyboard.dismiss}>
-                    {children}
-                </TouchableWithoutFeedBack>
-            </ScrollView>
-        </KeyboardAvoidingView>
-    );
-}
-
-export default keyboardAvoidingWrapper;
-KeyboardAvoidingWrapper
+export default KeyboardAvoidingWrapper;

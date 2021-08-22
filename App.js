@@ -16,7 +16,7 @@ const getFonts = () =>
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
   if (fontsLoaded) {
-    return <Login />;
+    return <Signup />;
   } else {
     return (
       <AppLoading
