@@ -5,7 +5,7 @@ import Constants from 'expo-constants'
 const StatusBarHeight = Constants.statusBarHeight;
 
 export const Colors = {
-    primary: "#F5F7FD",
+    primary: "#F5F7FD", // or E5F7FD
     secondary: "#FFFFFF",
     tertiary: "#1F2937",
     darkLight: "#9CA3AF",
@@ -13,10 +13,11 @@ export const Colors = {
     green: "#10B981",
     red: "#EF4444",
     black: "#000000",
-    green: "#95E793"
+    green: "#95E793",
+    fidelColor: "#F48ADD",
 }
 
-const { primary, secondary, tertiary, darkLight, brand, green, red, black } = Colors;
+const { primary, secondary, tertiary, darkLight, brand, green, red, black, fidelColor } = Colors;
 
 export const StyledContainer = styled.View`
     flex: 1;
@@ -31,6 +32,30 @@ export const InnerContainer = styled.View`
     align-items: center;
 `
 
+export const WelcomeContainer = styled(InnerContainer)`
+    padding: 25px;
+    padding-top: 10px;
+    justify-content: center;
+`
+
+export const Avatar = styled.Image`
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    border-radius: 50px;
+    border-width: 2px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-color: grey;
+`
+
+export const WelcomeImage = styled.Image`
+    height: 50%;
+    min-width: 100%;
+`
+
+
+
 export const PageLogo = styled.Image`
     width: 215px;
     height: 170px;
@@ -41,6 +66,7 @@ export const SubTitle = styled.Text`
     font-size: 25px;
     margin-bottom: 2px;
     color: ${tertiary};
+    color: ${fidelColor}
     font-family: poppins-bold;
 `
 

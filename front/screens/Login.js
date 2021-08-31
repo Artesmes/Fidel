@@ -34,7 +34,7 @@ const { brand } = Colors;
 // keyboard avoiding view
 import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
 
-const Login = () => {
+const Login = ({navigation}) => {
   const [hidePassword, setHidePassword] = useState(true);
 
   return (
@@ -50,6 +50,7 @@ const Login = () => {
           initialValues={{ email: "", password: "" }}
           onSubmit={(values) => {
             console.log(values);
+            navigation.navigate("Welcome")
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
@@ -86,7 +87,7 @@ const Login = () => {
               </ForgotPasswordContainer>
               <Line />
               <ButtonsContainer>
-                <CreateAccount>
+                <CreateAccount onPress={() => navigation.navigate('Signup')}>
                   <ButtonText>Créer un compte</ButtonText>
                 </CreateAccount>
                 <CreateAccount>

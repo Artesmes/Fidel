@@ -1,4 +1,5 @@
 import React from "react";
+import { Colors } from "./styles";
 import {
   ScrollView,
   KeyboardAvoidingView,
@@ -9,7 +10,7 @@ import {
 
 const KeyboardAvoidingWrapper = ({ children }) => {
   return (
-    <KeyboardAvoidingView style={{ flex: 1 }}>
+    <KeyboardAvoidingView style={{ flex: 1, backgroundColor: Colors.primary }}>
       <ScrollView>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           {children}
