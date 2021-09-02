@@ -50,6 +50,18 @@ clientSchema.pre("save", async function(next) {
   next()
 })
 
+clientSchema.statics.login = async function(email, password) {
+  const user = await this.findOne({ email })
+  if (user) {
+    const auth = await bcrypt.compare(password, user.password)
+    if (auth) {
+      return user
+    }
+    throw error('incorrect password')
+  }
+  throw Error('incorrect email')
+}
+
 const ClientModel = mongoose.model('client', clientSchema)
 
 module.exports = ClientModel;
