@@ -6,12 +6,10 @@ module.exports.checkUsers = (req, res, next) => {
     if (token) {
         jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
             if (err) {
-                console.log("here 1")
                 res.locals.user = null;
                 res.cookie('jwt', '', { maxAge: 1});
-                next()
+                
             } else {
-                console.log("here 2")
                 let user = await ClientModel.findById(decodedToken.id);
                 res.locals.user = user
                 console.log(user)
@@ -19,6 +17,7 @@ module.exports.checkUsers = (req, res, next) => {
             }
         })
     }
+    console.log("no token")
 }
 
 module.exports.requireAuth = (req, res, next) => {
@@ -32,5 +31,7 @@ module.exports.requireAuth = (req, res, next) => {
                 next()
             }
         })
+    } else {
+        console.log('no token')
     }
 }

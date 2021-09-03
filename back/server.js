@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser')
 require('dotenv').config({path:'./config/.env'})
 require('./config/db')
 
-const {checkUsers} = require('./middleware/auth.middleware')
+const {checkUsers, requireAuth} = require('./middleware/auth.middleware')
 const app = express(); // app est le framework express
 
 // middlewares
@@ -15,6 +15,9 @@ app.use(cookieParser())
 
 // jwt
 app.get('*', checkUsers)
+app.get('/jwtid', requireAuth, (req, res) => {
+    res.status(200).send(res.locals.user._id)
+})
 
 // routes
 app.use('/api/client', clientRoutes)
