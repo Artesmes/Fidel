@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { KeyboardAvoidingView, View, ScrollView, TouchableWithoutFeedback, Keyboard } from "react-native";
 import {
   StyledContainer,
@@ -25,6 +25,9 @@ import {
 // Formik
 import { Formik } from "formik";
 
+//axios
+import axios from 'axios'
+
 //icons
 import { Octicons, Ionicons } from "@expo/vector-icons";
 
@@ -36,6 +39,18 @@ import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
 
 const Login = ({navigation}) => {
   const [hidePassword, setHidePassword] = useState(true);
+  const [loginError, setLoginError] = useState({
+    bool: false,
+    data: ""
+  })
+  const [errorMsg, setErrorMsg] = useState("")
+  
+  useEffect(() => {
+    if (loginError.bool) {
+      setErrorMsg(loginError.data)
+    }
+  })
+
 
   return (
     <KeyboardAvoidingWrapper>
@@ -49,8 +64,21 @@ const Login = ({navigation}) => {
         <Formik
           initialValues={{ email: "", password: "" }}
           onSubmit={(values) => {
-            console.log(values);
-            navigation.navigate("Welcome")
+            
+            axios.post('http://10.0.2.2:5000/api/client/login', {
+              email: values.email,
+              password: values.password
+            })
+            .then(function (response) {
+              if (response.data.errors) {
+                setLoginError({bool: true, data: response.data.errors.email + response.data.errors.password})
+              } else {
+                  navigation.navigate("Welcome")
+              }
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
@@ -78,7 +106,7 @@ const Login = ({navigation}) => {
                 hidePassword={hidePassword}
                 setHidePassword={setHidePassword}
               />
-              <MsgBox>...</MsgBox>
+              <MsgBox>{errorMsg}</MsgBox>
               <StyledButton onPress = {handleSubmit}>
                 <ButtonText>Connexion</ButtonText>
               </StyledButton>

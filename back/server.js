@@ -20,7 +20,7 @@ const corsOptions = {
 }
 
 //cors
-app.use(cors({corsOptions}))
+app.use(cors('*'))
 
 // middlewares
 app.use(express.json())

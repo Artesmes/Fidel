@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, ScrollView, Text, KeyboardAvoidingView } from "react-native";
 import {
   StyledContainer,
@@ -25,6 +25,9 @@ import {
   PageLogo2,
 } from "./../components/styles";
 
+//axios
+import axios from 'axios'
+
 // Formik
 import { Formik } from "formik";
 
@@ -39,7 +42,17 @@ const { brand } = Colors;
 
 const Signup = ({navigation}) => {
   const [hidePassword, setHidePassword] = useState(true);
+  const [signUpError, setSignupError] = useState({
+    bool: false,
+    data: ""
+  })
+  const [msgError, setMsgError] = useState("")
 
+  useEffect(() => {
+    if (signUpError.bool) {
+      setMsgError(signUpError.data)
+    }
+  }, [signUpError])
   return (
     <KeyboardAvoidingWrapper>
       <StyledContainer>
@@ -56,7 +69,28 @@ const Signup = ({navigation}) => {
             }}
             onSubmit={(values) => {
               console.log(values);
-              navigation.navigate("Welcome")
+              
+              axios.post('http://10.0.2.2:5000/api/client/register', {
+                prenom: values.prenom,
+                nom: values.nom,
+                email: values.email,
+                password: values.password,
+                codePostal: values.codePostal
+              })
+              .then(function (response) {
+                console.log(response.data);
+                if (response.data.errors){
+                  setSignupError({bool: true, data: response.data.errors.email});
+                } else {
+                  navigation.navigate("Login")
+                }
+                
+              })
+              .catch(function (error) {
+                console.log("Post error")
+                console.log(error);
+              });
+              
             }}
           >
             {({ handleChange, handleBlur, handleSubmit, values }) => (
@@ -125,7 +159,7 @@ const Signup = ({navigation}) => {
                   hidePassword={hidePassword}
                   setHidePassword={setHidePassword}
                 />
-                <MsgBox>...</MsgBox>
+                <MsgBox>{msgError}</MsgBox>
                 <StyledButton onPress={handleSubmit}>
                   <ButtonText>S'inscrire</ButtonText>
                 </StyledButton>

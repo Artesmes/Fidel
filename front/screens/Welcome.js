@@ -56,7 +56,7 @@ const Login = ({navigation}) => {
           source={require("./../assets/img/logo.png")}
         />
             <Line />
-            <StyledButton onPress={() => navigation.navigate("Login")}>
+            <StyledButton onPress={() => navigation.push("Login")}>
               <ButtonText>Se déconnecter</ButtonText>
             </StyledButton>
             
