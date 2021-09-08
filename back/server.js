@@ -19,7 +19,7 @@ const corsOptions = {
     'preflightContinue': false
 }
 
-//cors
+//corss
 app.use(cors('*'))
 
 // middlewares
