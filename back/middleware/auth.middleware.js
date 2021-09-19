@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const ClientModel = require('../models/client.model')
 
 module.exports.checkUsers = (req, res, next) => {
-    const token = req.cookies.jwt;
+    token = req.headers.authorization.replace("Bearer ", "")
     if (token) {
         jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
             if (err) {
@@ -10,19 +10,21 @@ module.exports.checkUsers = (req, res, next) => {
                 res.cookie('jwt', '', { maxAge: 1});
                 
             } else {
+                console.log("ici")
                 let user = await ClientModel.findById(decodedToken.id);
                 res.locals.user = user
                 console.log(user)
                 next()
             }
         })
-    }
-    console.log("no token")
+    } else console.log("no token ici")
+    
 }
 
 module.exports.requireAuth = (req, res, next) => {
     const token = req.cookies.jwt
-    if (token) {
+    if (token) {ode .
+        
         jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken)  => {
             if (err) {
                 console.log(err)
@@ -32,6 +34,6 @@ module.exports.requireAuth = (req, res, next) => {
             }
         })
     } else {
-        console.log('no token')
+        console.log('no token la ')
     }
 }
