@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 //screens
 import Login from "./screens/Login";
@@ -8,6 +8,7 @@ import Welcome from './screens/Welcome'
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import RootStack from "./navigators/RootStack";
+import { Test } from "./test.js/test";
 
 const getFonts = () =>
   Font.loadAsync({
@@ -16,6 +17,10 @@ const getFonts = () =>
   });
 
 export default function App() {
+  useEffect(() => {
+    console.log("loading")
+  }, [])
+  const [test, setTest] = useState(true)
   const [fontsLoaded, setFontsLoaded] = useState(false);
   if (fontsLoaded) {
     return <RootStack />;

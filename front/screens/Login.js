@@ -37,6 +37,11 @@ const { brand } = Colors;
 // keyboard avoiding view
 import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
 
+//securestore
+import { getToken, setToken } from "../components/secureStore";
+
+
+
 const Login = ({navigation}) => {
   const [hidePassword, setHidePassword] = useState(true);
   const [loginError, setLoginError] = useState({
@@ -66,10 +71,13 @@ const Login = ({navigation}) => {
           onSubmit={(values) => {
             
             axios.post('http://10.0.2.2:5000/api/client/login', {
-              email: values.email,
-              password: values.password
+              email: "paul.waligora@hotmail.fr",
+              password: "test33"
             })
             .then(function (response) {
+              console.log(response.data.token) //ASK
+              token = response.data.token
+              setToken(token)
               if (response.data.errors) {
                 setLoginError({bool: true, data: response.data.errors.email + response.data.errors.password})
               } else {

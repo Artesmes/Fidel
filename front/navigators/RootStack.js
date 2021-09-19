@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
 import {Colors} from './../components/styles'
 // react navigator
@@ -10,9 +10,20 @@ import Login from "./../screens/Login";
 import Signup from "./../screens/Signup";
 import Welcome from './../screens/Welcome'
 
+//secureStore
+import { getToken } from '../components/secureStore';
+
 const Stack = createNativeStackNavigator();
  
+
 const RootStack = () => {
+    const [token, setToken] = useState(null)
+    useEffect(() => {
+        getToken().then((res) => {
+            setToken(token)
+            console.log("TOKENNNN: " + token)
+        })
+    }, [])
     return(
         <NavigationContainer>
             <Stack.Navigator
@@ -20,10 +31,14 @@ const RootStack = () => {
                     headerShown: false
                 }}
                 initialRouteName="Login"
-            >
-                <Stack.Screen name="Login" component={Login} />
+            >   
+                
+                <Stack.Screen name="Login" component={Login} /> 
                 <Stack.Screen name="Signup" component={Signup} />
+
                 <Stack.Screen name="Welcome" component={Welcome} />
+                
+                
             </Stack.Navigator>
         </NavigationContainer>
     )

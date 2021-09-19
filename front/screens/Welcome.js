@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   KeyboardAvoidingView,
   View,
@@ -42,9 +42,18 @@ const { brand } = Colors;
 // keyboard avoiding view
 import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
 
+//secureStore
+import { getToken } from "../components/secureStore";
+
 const Login = ({navigation}) => {
   const [hidePassword, setHidePassword] = useState(true);
-
+  useEffect(() => {
+    getToken().then((response) => {
+      console.log("token icii: " + response)
+    }).catch((err) => {
+      console.log(err)
+    })
+  }, [])
   return (
     <>
       <InnerContainer>
@@ -56,7 +65,10 @@ const Login = ({navigation}) => {
           source={require("./../assets/img/logo.png")}
         />
             <Line />
-            <StyledButton onPress={() => navigation.push("Login")}>
+            <StyledButton onPress={() =>{
+              navigation.push("Login");
+              getToken().then(token => console.log(token)).catch(err => console.log("error"));
+            } }>
               <ButtonText>Se déconnecter</ButtonText>
             </StyledButton>
             
