@@ -62,6 +62,7 @@ export const PageLogo = styled.Image`
 `
 
 export const SubTitle = styled.Text`
+    textAlign: center;
     padding-top: 20px;
     font-size: 25px;
     margin-bottom: 2px;
@@ -151,7 +152,7 @@ export const ForgotPassword = styled.Text`
 export const ButtonsContainer = styled.View`
     flexDirection: row;
     padding-top: 3px;
-    justifyContent: space-between;
+    justifyContent: space-around;
 `
 
 export const CreateAccount = styled.TouchableOpacity`

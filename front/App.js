@@ -16,11 +16,11 @@ const getFonts = () =>
     "poppins-bold": require("./assets/fonts/Poppins-Bold.ttf"),
   });
 
+
 export default function App() {
   useEffect(() => {
     console.log("loading")
   }, [])
-  const [test, setTest] = useState(true)
   const [fontsLoaded, setFontsLoaded] = useState(false);
   if (fontsLoaded) {
     return <RootStack />;

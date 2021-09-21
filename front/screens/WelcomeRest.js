@@ -5,7 +5,6 @@ import {
   StyledFormArea,
   StyledButton,
   ButtonText,
-  Colors,
   Line,
   WelcomeContainer,
   Avatar,
@@ -30,7 +29,7 @@ const Login = ({navigation}) => {
     <>
       <InnerContainer>
         <WelcomeContainer>
-        <SubTitle>Bienvenue !</SubTitle>
+        <SubTitle>Bienvenue dans l'espace restaurateurs !</SubTitle>
           <StyledFormArea>
           <Avatar
           resizeMode="cover"

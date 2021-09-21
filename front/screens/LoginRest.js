@@ -20,7 +20,7 @@ import {
   CreateAccount,
   EspaceResto,
   ForgotPasswordContainer
-} from "./../components/styles";
+} from "../components/styles";
 
 // Formik
 import { Formik } from "formik";
@@ -69,14 +69,15 @@ const Login = ({navigation}) => {
           resizeMode="cover"
           source={require("./../assets/img/logo.png")}
         />
-        <SubTitle>Se connecter</SubTitle>
+        <SubTitle>Espace restaurateurs</SubTitle>
+        
         <Formik
           initialValues={{ email: "", password: "" }}
           onSubmit={(values) => {
             
-            axios.post('http://10.0.2.2:5000/api/client/login', {
+            axios.post('http://10.0.2.2:5000/api/rest/login', {
               email: "paul.waligora@hotmail.fr",
-              password: "test33"
+              password: "Polo343507"
             })
             .then(function (response) {
               console.log(response.data.token) //ASK
@@ -87,7 +88,7 @@ const Login = ({navigation}) => {
                   const TheToken = response.data.token
                   setTokenStorage(TheToken)
                   setToken(TheToken)
-                  navigation.navigate("Welcome")
+                  navigation.navigate("WelcomeRest")
               }
             })
             .catch(function (error) {
@@ -98,7 +99,7 @@ const Login = ({navigation}) => {
           {({ handleChange, handleBlur, handleSubmit, values }) => (
             <StyledFormArea>
               <MyTextInput
-                label="Adresse E-mail"
+                label="Adresse E-mail du restaurant"
                 icon="mail"
                 placeholder="andyj@gmail.com"
                 placeholderTextColor={Colors.darkLight}
@@ -129,11 +130,11 @@ const Login = ({navigation}) => {
               </ForgotPasswordContainer>
               <Line />
               <ButtonsContainer>
-                <CreateAccount onPress={() => navigation.navigate('Signup')}>
-                  <ButtonText>Créer un compte</ButtonText>
+                <CreateAccount onPress={() => navigation.navigate('SignupRest')}>
+                  <EspaceResto>Créer un compte {"\n"} Restaurateur </EspaceResto>
                 </CreateAccount>
-                <CreateAccount onPress={() => navigation.navigate('LoginRest')}>
-                  <EspaceResto>Espace{"\n"}restaurateurs</EspaceResto>
+                <CreateAccount onPress={() => navigation.navigate('Login')}>
+                  <EspaceResto>Espace{"\n"}clients</EspaceResto>
                 </CreateAccount>
               </ButtonsContainer>
             </StyledFormArea>

@@ -1,5 +1,7 @@
 const express = require('express');
 const clientRoutes = require('./routes/client.routes')
+const restRoutes = require('./routes/rest.routes')
+
 
 const cookieParser = require('cookie-parser')
 
@@ -34,6 +36,8 @@ app.get('/jwtid', requireAuth, (req, res) => {
 
 // routes
 app.use('/api/client', clientRoutes)
+app.use('/api/rest', restRoutes)
+
 
 // server
 app.listen(process.env.PORT, () => {

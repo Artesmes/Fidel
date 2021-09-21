@@ -23,7 +23,7 @@ import {
   Buttonconnexion2,
   TextButtonConnexion2,
   PageLogo2,
-} from "./../components/styles";
+} from "../components/styles";
 
 //axios
 import axios from 'axios'
@@ -57,12 +57,12 @@ const Signup = ({navigation}) => {
     <KeyboardAvoidingWrapper>
       <StyledContainer>
         <InnerContainer>
-          <SubTitle>Inscription</SubTitle>
+          <SubTitle>Inscrire un Restaurant</SubTitle>
           <Formik
             initialValues={{
               email: "",
-              nom: "",
-              prenom: "",
+              nomRest: "",
+              adresse: "",
               codePostal: "",
               password: "",
               confirmPassword: "",
@@ -70,7 +70,7 @@ const Signup = ({navigation}) => {
             onSubmit={(values) => {
               console.log(values);
               
-              if (values.email == "" || values.nom == "" || values.prenom == "" || values.codePostal == "" || values.nom == "" || values.nom == "" || values.nom == "") {
+              if (values.email == "" || values.nomRest == "" || values.adresse == "" || values.codePostal == "" || values.nomRest == "" || values.nomRest == "" || values.nomRest == "") {
                 setSignupError({bool: true, data: "Tous les champs doivent être renseigné"})
               }
               else if (values.password !== values.confirmPassword) {
@@ -78,9 +78,9 @@ const Signup = ({navigation}) => {
               }
                else {
 
-              axios.post('http://10.0.2.2:5000/api/client/register', {
-                prenom: values.prenom,
-                nom: values.nom,
+              axios.post('http://10.0.2.2:5000/api/rest/register', {
+                adresse: values.adresse,
+                nomRest: values.nomRest,
                 email: values.email,
                 password: values.password,
                 codePostal: values.codePostal
@@ -90,13 +90,14 @@ const Signup = ({navigation}) => {
                 if (response.data.errors){
                   setSignupError({bool: true, data: response.data.errors.email });
                 } else {
-                  navigation.navigate("Login")
+                  navigation.navigate("LoginRest")
                 }
                 
               })
               .catch(function (error) {
                 console.log("Post error")
                 console.log(error);
+                setSignupError({bool: true, data: "Une erreur imprévue est arrivée, vérifiez votre connexion"});
               });
             }
             }}
@@ -114,22 +115,22 @@ const Signup = ({navigation}) => {
                   keyboardType="email-address"
                 />
                 <MyTextInput
-                  label="Nom"
+                  label="Nom du restaurant"
                   icon="person"
-                  placeholder="Dupont"
+                  placeholder="Sushi Dream"
                   placeholderTextColor={Colors.darkLight}
-                  onChangeText={handleChange("nom")}
-                  onBlur={handleBlur("nom")}
-                  value={values.nom}
+                  onChangeText={handleChange("nomRest")}
+                  onBlur={handleBlur("nomRest")}
+                  value={values.nomRest}
                 />
                 <MyTextInput
-                  label="Prénom"
-                  icon="person"
-                  placeholder="Jean"
+                  label="Adresse"
+                  icon="location"
+                  placeholder="179 rue Tolbiac"
                   placeholderTextColor={Colors.darkLight}
-                  onChangeText={handleChange("prenom")}
-                  onBlur={handleBlur("prenom")}
-                  value={values.prenom}
+                  onChangeText={handleChange("adresse")}
+                  onBlur={handleBlur("adresse")}
+                  value={values.adresse}
                 />
                 <MyTextInput
                   label="Code postal"
@@ -169,10 +170,10 @@ const Signup = ({navigation}) => {
                 />
                 <MsgBox>{msgError}</MsgBox>
                 <StyledButton onPress={handleSubmit}>
-                  <ButtonText>S'inscrire</ButtonText>
+                  <ButtonText>Inscrire le restaurant</ButtonText>
                 </StyledButton>
                 <ButtonsContainer2>
-                  <Buttonconnexion2 onPress={() => navigation.navigate("Login")}>
+                  <Buttonconnexion2 onPress={() => navigation.navigate("LoginRest")}>
                     <TextButtonConnexion2>Se connecter</TextButtonConnexion2>
                   </Buttonconnexion2>
                   <PageLogo2

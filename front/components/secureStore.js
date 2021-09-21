@@ -2,7 +2,7 @@ import React from 'react'
 
 import * as SecureStore from 'expo-secure-store';
 
-export const setToken = (token) => {
+export const setTokenStorage = (token) => {
     return SecureStore.setItemAsync('secure_token', token);
 };
 
