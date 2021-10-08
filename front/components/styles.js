@@ -1,5 +1,4 @@
 import styled from 'styled-components/native'
-import {View, Text, Image, TouchableOpacity} from 'react-native'
 import Constants from 'expo-constants'
 
 const StatusBarHeight = Constants.statusBarHeight;
@@ -190,8 +189,8 @@ export const Buttonconnexion2 = styled.TouchableOpacity`
 
 `
 export const PageLogo2 = styled.Image`
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
 `
 
 export const TextButtonConnexion2 = styled.Text`

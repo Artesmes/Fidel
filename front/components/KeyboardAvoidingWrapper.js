@@ -10,7 +10,7 @@ import {
 
 const KeyboardAvoidingWrapper = ({ children }) => {
   return (
-    <KeyboardAvoidingView style={{ flex: 1, backgroundColor: Colors.primary }}>
+    <KeyboardAvoidingView style={{ flex: 1, backgroundColor: "white" }}>
       <ScrollView>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           {children}

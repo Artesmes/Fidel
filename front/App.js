@@ -9,6 +9,7 @@ import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import RootStack from "./navigators/RootStack";
 import { Test } from "./test.js/test";
+import AccueilRest from "./screens/AccueilRest";
 
 const getFonts = () =>
   Font.loadAsync({
@@ -23,7 +24,7 @@ export default function App() {
   }, [])
   const [fontsLoaded, setFontsLoaded] = useState(false);
   if (fontsLoaded) {
-    return <RootStack />;
+    return <AccueilRest />;
   } else {
     return (
       <AppLoading
